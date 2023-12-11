@@ -75,7 +75,6 @@ install_requires = [
     # "libsonata>=0.1.25",
 ]
 
-# TODO this should be in `pyproject.toml`, I think.
 setup_requires = [
     "setuptools_scm",
 ]
@@ -100,9 +99,6 @@ setup(
     zip_safe=False,
     setup_requires=setup_requires,
     install_requires=install_requires,
-    # extras_require={
-    #     'docs': ['sphinx-bluebrain-theme'],
-    # },
     python_requires=">=3.8",
     use_scm_version={"local_scheme": "no-local-version",
                      },
