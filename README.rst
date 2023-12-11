@@ -68,6 +68,9 @@ to import ``libsonata_mpi``, it’ll return the default reader. To check
 if collective I/O is working use Darshan or set the environment variable
 ``ROMIO_PRINT_HINTS=1``.
 
+Acknowledgements
+----------------
+The development of this software was supported by funding to the Blue Brain Project, a research center of the École polytechnique fédérale de Lausanne (EPFL), from the Swiss government’s ETH Board of the Swiss Federal Institutes of Technology.
 
 License
 -------
