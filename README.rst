@@ -67,3 +67,25 @@ True``. The communicator must be an MPI4Py communicator. If ``libsonata`` fails
 to import ``libsonata_mpi``, it’ll return the default reader. To check
 if collective I/O is working use Darshan or set the environment variable
 ``ROMIO_PRINT_HINTS=1``.
+
+
+License
+-------
+
+libsonata is distributed under the terms of the GNU Lesser General Public License version 3,
+unless noted otherwise, for example, for external dependencies.
+Refer to `COPYING.LESSER` and `COPYING` files for details.
+
+Copyright (c) 2023 Blue Brain Project/EPFL
+
+libsonata is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License version 3
+as published by the Free Software Foundation.
+
+libsonata is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with libsonata.  If not, see <https://www.gnu.org/licenses/>.
