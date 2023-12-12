@@ -13,6 +13,8 @@ source "$VENV/bin/activate"
 set -u
 
 $VENV/bin/pip -v install pytest
+
+$VENV/bin/pip -v install extlib/libsonata
 $VENV/bin/pip -v install --force .
 
-# $VENV/bin/pytest
+$VENV/bin/pytest
