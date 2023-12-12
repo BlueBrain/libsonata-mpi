@@ -9,7 +9,7 @@ if [[ ! -d "$VENV" ]]; then
 fi
 
 set +u  # ignore missing variables in activation script
-source "$BIN/activate"
+source "$VENV/bin/activate"
 set -u
 
 $VENV/bin/pip -v install pytest
