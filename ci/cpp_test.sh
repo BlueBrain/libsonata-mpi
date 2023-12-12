@@ -14,5 +14,5 @@ cmake -DCMAKE_BUILD_TYPE=Release                                             \
       -B $BUILD_DIR                                                          \
       .
 
-cmake --build "$BUILD_DIR" --parallel
+cmake --build "$BUILD_DIR" --parallel --verbose
 ctest --test-dir "$BUILD_DIR"
