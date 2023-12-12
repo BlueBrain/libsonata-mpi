@@ -15,4 +15,4 @@ cmake -DCMAKE_BUILD_TYPE=Release                                             \
       .
 
 cmake --build "$BUILD_DIR" --parallel --verbose
-ctest --test-dir "$BUILD_DIR"
+ctest --test-dir "$BUILD_DIR" --output-on-failure
