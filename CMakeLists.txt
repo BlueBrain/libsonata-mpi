@@ -65,6 +65,7 @@ else()
         find_package(Catch2 REQUIRED)
     endif()
     find_package(HighFive REQUIRED)
+    find_package(sonata REQUIRED)
 endif()
 
 find_package(MPI REQUIRED)
@@ -105,7 +106,7 @@ set_target_properties(sonata_mpi_shared
 )
 
 target_link_libraries(sonata_mpi_shared
-    PUBLIC sonata_shared
+    PUBLIC sonata::sonata_shared
 )
 
 target_compile_definitions(sonata_mpi_shared
@@ -114,7 +115,7 @@ target_compile_definitions(sonata_mpi_shared
 )
 
 target_link_libraries(sonata_mpi_static
-    PUBLIC sonata_static
+    PUBLIC sonata::sonata_static
 )
 
 # =============================================================================
