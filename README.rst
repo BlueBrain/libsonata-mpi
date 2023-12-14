@@ -14,18 +14,31 @@ Since ``libsonata_mpi`` depends on MPI, it can’t be built as a wheel and must
 be installed from source. Therefore, a reasonably modern C++ compiler and MPI
 must already be installed.
 
-Typically this package is installed as an optional dependency of ``libsonata``:
+Because both ``libsonata`` and ``libsonata-mpi`` depend on HDF5 they need to be
+linked against the same version of HDF5. Hence, effectively both ``libsonata``
+and ``libsonata-mpi`` need to be built from source.
+
+Manually
+^^^^^^^^
+
+Clone both repositories (with ``--recursive``) and then use:
 
 ::
 
-   pip install libsonata[mpi]
+   pip install .
 
-To directly install ``libsonata_mpi`` without ``libsonata`` (which is utterly
-useless), perform:
+in both repositories.
+
+Spack
+^^^^^
+
+There's a spack recipe which allows the following, preferably inside
+a spack environment.
 
 ::
 
-   pip install libsonata_mpi
+   spack add libsonata-mpi
+   spack install
 
 C++
 ~~~
@@ -41,6 +54,7 @@ Then perform:
 customize by using:
 
 * ``CMAKE_INSTALL_PREFIX`` to pick an installation directory.
+* ``CMAKE_PREFIX_PATH`` to help CMake find locally installed dependencies.
 * ``SONATA_MPI_FROM_SUBMODULES`` to configure if dependencies are picked up
   from Git submodules.
 
