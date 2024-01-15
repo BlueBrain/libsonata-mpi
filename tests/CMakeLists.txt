@@ -1,6 +1,7 @@
 set(SONATA_MPI_TEST_SOURCES
   unit_tests.cpp
   test_collective_reader.cpp
+  test_collective_hdf5.cpp
 )
 
 add_executable(unit_tests ${SONATA_MPI_TEST_SOURCES})
