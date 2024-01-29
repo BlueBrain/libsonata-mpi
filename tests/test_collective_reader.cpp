@@ -64,7 +64,7 @@ void check_one_dimensional(const bbp::sonata::Hdf5Reader& reader,
     auto dset = grp.getDataSet(dset_name);
     auto x = reader.readSelection<T>(dset, selection);
     for(size_t i = 0; i < flat_selection.size(); ++i) {
-        REQUIRE(x[i] == flat_selection[i]);
+      REQUIRE(x[i] == flat_selection[i]);
     }
   }
 }
@@ -86,26 +86,48 @@ void check_two_dimensional(const bbp::sonata::Hdf5Reader& reader,
 
     auto x = reader.readSelection<T>(dset, xsel, ysel);
     for(size_t i = 0; i < flat_xsel .size(); ++i) {
-        REQUIRE(x[i][0] == flat_xsel[i] * dims[1]);
-        REQUIRE(x[i][1] == flat_xsel[i] * dims[1] + 1);
+      REQUIRE(x[i][0] == flat_xsel[i] * dims[1]);
+      REQUIRE(x[i][1] == flat_xsel[i] * dims[1] + 1);
     }
   }
 }
 
-TEST_CASE("ReadDataSet") {
+void check_read_data_set(const std::vector<bbp::sonata::Selection>& selections) {
   auto comm = MPI_COMM_WORLD;
   auto rank = mpi::comm_rank(comm);
 
   auto reader = bbp::sonata::make_collective_reader(comm, true, true);
-
-  auto selections = std::vector<bbp::sonata::Selection>{
-    bbp::sonata::Selection({{0, 3}, {5, 6}, {8, 10}}),
-    bbp::sonata::Selection({{2, 8}, {10, 32}})
-  };
 
   check_one_dimensional<float>(reader, selections[rank]);
   check_one_dimensional<double>(reader, selections[rank]);
   check_one_dimensional<uint64_t>(reader, selections[rank]);
 
   check_two_dimensional<std::array<uint64_t, 2>>(reader, selections[rank]);
+}
+
+TEST_CASE("ReadDataSet") {
+  auto selections = std::vector<bbp::sonata::Selection>{
+    bbp::sonata::Selection({{0, 3}, {5, 6}, {8, 10}}),
+    bbp::sonata::Selection({{2, 8}, {10, 32}})
+  };
+
+  check_read_data_set(selections);
+}
+
+TEST_CASE("ReadOneEmptyDataSet") {
+  auto selections = std::vector<bbp::sonata::Selection>{
+    bbp::sonata::Selection({}),
+    bbp::sonata::Selection({{2, 8}})
+  };
+
+  check_read_data_set(selections);
+}
+
+TEST_CASE("ReadAllEmptyDataSet") {
+  auto selections = std::vector<bbp::sonata::Selection>{
+    bbp::sonata::Selection({}),
+    bbp::sonata::Selection({})
+  };
+
+  check_read_data_set(selections);
 }
